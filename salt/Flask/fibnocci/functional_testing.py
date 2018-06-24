@@ -1,6 +1,8 @@
+{% set host_list = salt['pillar.get']('flask-lb:hosts',{}) %}
+
 import requests
 
-host_list = ['10.2.52.176','10.2.52.169']
+host_list = {{ host_list }}
 class FuncTestCase:
     def __init__(self):
         pass
