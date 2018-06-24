@@ -46,3 +46,8 @@ Once Deployment is Done , you can access service as like below
   - uwsgi
   - Flask
   - gunicorn
+
+### Request Flow:
+
+https://github.com/raja1211/Fibonacci-Series/blob/master/Request-Flow
+
