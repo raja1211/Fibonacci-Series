@@ -52,3 +52,10 @@ Once Deployment is Done , you can access service as like below
 
 https://github.com/raja1211/Fibonacci-Series/blob/master/Request-Flow
 
+
+### TEST-CASES
+
+>RUN:
+``` python /fib-flask/fibnocci functional_testing.py ```
+
+it containts default list of variables "[-16,16,0,10.0,'hello']" , if you want to test on other variables you can modify values and run it again.
