@@ -1,0 +1,11 @@
+i.   Step1:  Once you access your browser with ``` http://minion-ip/fib/10 ```
+ii.  Step2: Request Reaches Nginx 
+           Nginx Functinalities:
+           ```
+           --> Https/URL redirection
+           --> Loadbalancing
+           --> SSL Termination
+           ```
+iii. Step3: Once request reached nginx , nginx rediects request to fib service , which is Gunicorn [Python Webserver Gateway Interface HTTP server]
+iv.  Step4: Python Program which is running in uWSGI serves the request and return list of fibonacci numbers as per the Logic.
+
