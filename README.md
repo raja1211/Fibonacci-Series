@@ -18,7 +18,23 @@ https://github.com/raja1211/Fibonacci-Series/blob/master/Salt-MM.md
 
 #### Deploy Code
 --> Once Salt-master and Minion setup is done, download git repo to /srv/ folder
-> 
+```
+ cd /tmp/
+ git clone https://github.com/raja1211/Fibonacci-Series.git
+ cd /tmp/Fibonacci-Series
+ cp -r * /srv/
+ service salt-master restart
+**update your minions IPs in /srv/pillar/Flask/init.sls**
+ sudo salt -L <minion1>,<minion2> saltutil.refresh_pillar
+ sudo salt -L <minion1>,<minion2> state.sls Flask
+```
+##### Access
+Once Deployment is Done , you can access service as like below
+
+``` http://<minion1>/fib/<int>  [OR]  http://<minion2>/fib/<int> ```
+   
+**As we have loadbalanacer configured Load will share among the hosts**
+**Note: Because we are using Selfsigned certificates, in browser we need to accept the keys.**
 
 ##### Installation softwares
    - python-pip
