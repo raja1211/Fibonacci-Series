@@ -10,8 +10,7 @@ global_cache = {}
 @app.route('/',methods=['GET','POST'])
 def index():
         syslog.syslog(syslog.LOG_WARNING,'I Got request to Base URL ')
-        return 'Usage:  https://ip/fib/num'
-
+	return jsonify({'Usage': 'https://ip/fib/num'})
 
 @app.route('/fib/<string:value>',methods=['GET'])
 def fib(value):
@@ -23,10 +22,10 @@ def fib(value):
    	   n = int(value)
    	   if n < 0:
               syslog.syslog(syslog.LOG_ERR,'I Got Negative Number and I am Handling it')
-   	      return 'negative number - wrong input'
+   	      return jsonify({'result':'negative number - wrong input'})
  	except:
               syslog.syslog(syslog.LOG_ERR,'I Got Wrong Input I am Handling it')
-              return 'wrong input'
+              return jsonify({'result':str('wrong input')})
    
  	if n in global_cache.keys():
  	    	ans_list = str(global_cache[n])
@@ -40,7 +39,7 @@ def fib(value):
          		a,b = b,a+b
      		global_cache[n] = ans_list
         syslog.syslog(syslog.LOG_INFO,'I Processed '+value)
- 	return str(ans_list)
+        return jsonify({'result':ans_list})
 
 if __name__ == '__main__':
 	app.run(debug=True)
