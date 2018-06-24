@@ -1,0 +1,27 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+        server_name raja_test.com www.raja_test.com;
+        return 301 https://$server_name$request_uri;
+
+}
+
+server {
+
+	listen 443 ssl;
+        server_name raja_test.com www.raja_test.com;
+	ssl on;
+	ssl_certificate         /etc/nginx/ssl/raja_test.com/server.crt;
+	ssl_certificate_key     /etc/nginx/ssl/raja_test.com/server.key;
+        add_header Strict-Transport-Security "max-age=31536000" always;
+
+	location / {
+ 		 proxy_pass      http://localhost:8000;
+		 proxy_redirect  http://localhost:8000/ /;
+		 proxy_read_timeout 60s;
+		 proxy_set_header          Host            $host;
+		 proxy_set_header          X-Real-IP       $remote_addr;
+		 proxy_set_header          X-Forwarded-For $proxy_add_x_forwarded_for;
+		   }	
+
+}

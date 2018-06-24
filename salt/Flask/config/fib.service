@@ -1,0 +1,15 @@
+[Unit]
+Description = 'This is Fibnocci series'
+After= network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory={{ path }}
+Environment="PATH={{ path }}"
+ExecStart=/usr/local/bin/gunicorn --workers 3 --bind unix://{{ path }}/fib.sock  wsgi:app -b 0.0.0.0:8000 
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target
