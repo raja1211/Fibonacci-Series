@@ -25,8 +25,8 @@ server {
         add_header Strict-Transport-Security "max-age=31536000" always;
 
 	location / {
- 		 proxy_pass      http://localhost:8000;
-		 proxy_redirect  http://localhost:8000/ /;
+ 		 proxy_pass      http://backend/;
+		 proxy_redirect  http://backend// /;
 		 proxy_read_timeout 60s;
 		 proxy_set_header          Host            $host;
 		 proxy_set_header          X-Real-IP       $remote_addr;
