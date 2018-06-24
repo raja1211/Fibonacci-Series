@@ -1,8 +1,17 @@
+{% set host_list = salt['pillar.get']('flask-lb:hosts',{}) %}
+upstream backend {
+
+{%- for vhost in host_list %}
+   server {{ vhost }}:8000; 
+{% endfor -%}
+
+}
+
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
         server_name raja_test.com www.raja_test.com;
-        return 301 https://$server_name$request_uri;
+        return 301 https://$host$request_uri;
 
 }
 

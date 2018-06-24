@@ -1,2 +1,4 @@
-flask:
-  - 'hello'
+flask-lb:
+   hosts:
+         - 10.2.52.176
+         - 10.2.52.169
